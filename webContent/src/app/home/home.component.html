@@ -1,4 +1,15 @@
-<p>
-  <wpl-header [title]="title" [color]="color"></wpl-header>
-  home works123!
-</p>
+<ng-container *ngFor="let a of [1,2]">
+    <div *ngFor="let i of returnVal | async | serviceFilter;let index = index">
+        <!--<div> -->
+          <wpl-header [title]="title" [color]="color" [id] = "0" (changeColor)="changeInput($event)" #headerRef></wpl-header>
+        <!--</div> -->
+        <!--DoesntWrok when inside a loop -->
+          <button (click) = "headerRef.changeColorFn($event)">Change Color</button>
+          <button (click) = "changeServiceColorFn()">Service Change Color</button>
+        </div>
+</ng-container>
+
+<wpl-menu ></wpl-menu>
+ 
+
+<!-- <wpl-footer></wpl-footer> -->

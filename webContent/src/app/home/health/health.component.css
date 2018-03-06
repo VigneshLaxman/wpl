@@ -1,0 +1,7 @@
+form .ng-valid.ng-touched  {
+    border-bottom: 5px solid #42A948; /* green */
+  }
+ 
+  form .ng-touched.ng-invalid  {
+    border-bottom: 5px solid #a94442; /* red */
+  }

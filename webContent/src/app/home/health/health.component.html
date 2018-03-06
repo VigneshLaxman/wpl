@@ -1,0 +1,31 @@
+<div class="container">
+  <form #myForm="ngForm">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input class = "form-control" type="text" id="firstName" name="firstName" [(ngModel)]="templateData.firstName" required #firstName="ngModel"/>
+      <div [hidden] = "firstName.valid || firstName.pristine" class="alert alert-danger">FirstName is Mandatory</div>
+    </div>
+    
+    <div class="form-group">
+      <label for="middleName">Middle Name</label>
+      <input class = "form-control" type="text" id="middleName" name="middleName" [(ngModel)]="templateData.middleName" />
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input class = "form-control" type="text" id="lastName" name="lastName" [(ngModel)]="templateData.lastName" required/>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input class = "form-control" type="number" id="age" name="age" [(ngModel)]="templateData.age" required/>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select class = "form-control" id ="gender" [(ngModel)]="templateData.gender" name="gender" required> 
+        <option *ngFor = "let sex of gender" (value) = "sex"> {{sex}} </option>
+      </select>
+    </div>
+   
+    <button type = "submit" class="btn btn-success" [disabled] = "!myForm.form.valid">Send Data</button>
+    <button type = "reset" class="btn btn-default" (click) = "myForm.reset()">Reset</button>
+  </form>
+</div>

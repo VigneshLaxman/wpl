@@ -1,0 +1,67 @@
+<div class = "container">
+  <h3>Reactive form</h3>
+  <p>Form value: {{ formGrp.value | json }}</p>
+  <p>Form status: {{ formGrp.status | json }}</p>
+  <p>Name status: {{ formGrp.get('name').untouched | json }}</p>
+  <form [formGroup] = "formGrp" novalidate>
+    <div class="form-group">
+        <label i18n>Name</label>
+        <input class="form-control" formControlName = "name"/>
+    </div>
+    <div class="form-group">
+      <label i18n>Age</label>
+      <input type = "number" class="form-control" formControlName = "age"/>
+    </div>
+    <div class="form-group">
+      <label i18n>Gender</label>
+      <br/>
+      <label><input type="radio" formControlName="gender" value="m">Male</label>
+      <label><input type="radio" formControlName="gender" value="f">Female</label>
+    </div>
+    <!-- <div class="form-group" formGroupName="address">
+        <div class="form-group">
+            <label>Area</label>
+            <input class="form-control" formControlName = "area"/>
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input class="form-control" formControlName = "city"/>
+        </div>
+        <div class="form-group">
+            <label>State</label>
+            <select formControlName = "state" class="form-control">
+              <option *ngFor = "let state of states" [value] = "state">{{state}}</option>
+            </select>
+        </div>
+    </div> -->
+    <!-- Important Assign formArray name without [] -->
+    <div class="well well-lg" formArrayName = "addressArr">
+      <div *ngFor = "let address of addressArr.controls; let i=index" [formGroupName] = "i">
+        <h4>Address</h4>
+        <div class="form-group">
+          <label>Area {{i}}</label>
+          <input class="form-control" formControlName = "area"/>
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input class="form-control" formControlName = "city"/>
+        </div>
+        <div class="form-group">
+            <label>State</label>
+            <select formControlName = "state" class="form-control">
+              <option *ngFor = "let state of states" [value] = "state">{{state}}</option>
+            </select>
+        </div>
+      </div>
+      <button (click) = "addAddress()" type="button">Add a Address</button>
+      <button (click) = "removeAddress()" type="button">Remove a Address</button>
+    </div>
+    <!-- if type not added for button it will call submit -->
+    
+    <button (click) = "udpateName()" type="button">Update Name</button>
+    <button (click) = "updateForm()" type="button">Update Form</button>
+  </form>
+ 
+  <p>Name value: {{ formGrp.get('name').value | json }}</p>
+  <!--<p>State value: {{ formGrp.get('address.state').value}}</p>-->
+</div>
